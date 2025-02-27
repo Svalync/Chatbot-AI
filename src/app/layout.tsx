@@ -1,15 +1,42 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Familjen_Grotesk, Inter } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+
+import { cn } from "@/lib/utils";
+import { StoreProvider } from './StoreProvider';
+
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const bricolage_grotesque = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-bricolage',
+});
+const familjen_grotesk = Familjen_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-familijen',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const sfPro = localFont({
+  src: [
+    {
+      path: './fonts/SFProRegular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/SFpromedium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/SFprobold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-sfPro',
 });
 
 export const metadata: Metadata = {
@@ -23,12 +50,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <StoreProvider>
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <body className={cn(inter.variable, sfPro.variable, bricolage_grotesque.variable, familjen_grotesk.variable)}>
         {children}
       </body>
     </html>
+    </StoreProvider>
   );
 }
