@@ -1,32 +1,32 @@
 'use client';
 
-import { Bot, X } from 'lucide-react';
+import { Bot, ChevronRight, MessageCircleIcon, PlusIcon, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Textarea } from '@/components/ui/textarea';
-// import configEnv from '@/';
 import { AppDispatch } from '@/store';
 
 import {
   chatbotState,
   createNewChat,
   generatePromptAnswerByChatbotIdAsync,
-  getIframeDetailsByIdAsync,
   initChatbotMessagesFromBackendAsync,
   selectChatbot,
   selectMessageEntityId,
   selectMessages,
-  selectUser,
   setMessageEntityId,
   setMessages,
-} from '@/features/slices/chatbot/chatbotSlice';
+} from '@/features/slices/chatbotSlice';
 import { cn } from '@/lib/utils';
 import { chatbotMessageContentType, chatbotMessagesType } from '@/schemas/chatbot.index';
-
-import { ChevronRight, MessageIcon, PlusIcon } from './Icons';
+import { selectUser } from '@/features/slices/userSlice';
+import configEnv from '@/config';
 import MarkdownToHTML from './MarkdownToHTML';
+
+// import { ChevronRight, MessageIcon, PlusIcon } from './Icons';
+// import MarkdownToHTML from './MarkdownToHTML';
 
 interface chatProps {
   chatbotId: string;
@@ -44,12 +44,7 @@ export default function ChatBox(props: chatProps) {
   const [isIframe, setIsIframe] = useState<boolean>(false);
   const specificMessages: chatbotMessagesType | undefined = messages.find((message) => message.id === messageEntityId);
 
-  useEffect(() => {
-    if (window.location.href.includes('widget_chatbot')) {
-      dispatch(getIframeDetailsByIdAsync(props.chatbotId));
-      setIsIframe(true);
-    }
-  }, []);
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -88,7 +83,7 @@ export default function ChatBox(props: chatProps) {
       <div className="gap-5border-border flex w-full flex-row items-center justify-between border-b px-[17px] py-[14px]">
         <div className="flex items-center gap-2">
           <Avatar className="size-[30px]">
-            <AvatarImage
+            {/* <AvatarImage
               src={
                 props.chatbotId !== '2eea2d39-6ab5-4955-a450-20ab6fbed974'
                   ? `${configEnv.imageKit.baseURL}/${chatbot.user?.userCredentials[0]?.companyLogo}`
@@ -96,7 +91,7 @@ export default function ChatBox(props: chatProps) {
               }
               alt="@Support"
               className="size-[30px] border border-border"
-            />
+            /> */}
             <AvatarFallback className="bg-secondary/30 text-secondary">{chatbot.title.charAt(0)}</AvatarFallback>
           </Avatar>
 
@@ -115,7 +110,7 @@ export default function ChatBox(props: chatProps) {
               getPreviousChats();
             }}
           >
-            {showPreviousChats ? <X className="h-4 w-4" /> : <MessageIcon />}
+            {showPreviousChats ? <X className="h-4 w-4" /> : <MessageCircleIcon />}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import errorHandler from "@/helpers/errorHandler";
 import ChatbotContentController from "@/controllers/ChatbotContentController";
 import { getCurrentUser } from "@/next-auth/utils";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     const session = await getCurrentUser();
     const chatbotContentControllerHandler = new ChatbotContentController();

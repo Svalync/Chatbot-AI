@@ -11,30 +11,66 @@ const AllAPIRouteMapping = {
       method: "GET",
     },
   },
-  chatbots: {
-    get: {
-      apiPath: "/api/chatbot",
-      method: "GET",
-    },
+  userCredential: {
     create: {
-      apiPath: "/api/chatbot/create",
-      method: "POST",
+      apiPath: '/api/usercredential',
+      method: 'POST',
     },
-    getList: {
-      apiPath: "/api/chatbot/list",
-      method: "GET",
+    getData: {
+      apiPath: '/api/usercredential/get',
+      method: 'GET',
     },
-    getStatus: {
-      apiPath: "/api/chatbot/get-status",
-      method: "GET",
+    createAPIKey: {
+      apiPath: '/api/usercredential/apiKey',
+      method: 'POST',
     },
-    update: {
-      apiPath: "/api/chatbot/update",
-      method: "PUT",
+  },
+  files: {
+    upload: {
+      apiPath: '/api/files/upload',
+      method: 'POST',
+    },
+  },
+  chatbot: {
+    create: {
+      apiPath: '/api/chatbot/create',
+      method: 'POST',
     },
     promptResponse: {
-      apiPath: "/api/chatbot/chat-completion",
-      method: "POST",
+      apiPath: '/api/chatbot/chat-completion',
+      method: 'POST',
+    },
+    getStatus: {
+      apiPath: '/api/chatbot/get-status',
+      method: 'GET',
+    },
+    specificStatus: {
+      apiPath: '/api/chatbot/specific-status',
+      method: 'GET',
+    },
+    getChatbots: {
+      apiPath: '/api/chatbot/get-chatbots',
+      method: 'GET',
+    },
+    specificChatbot: {
+      apiPath: '/api/chatbot/specific-chatbot',
+      method: 'GET',
+    },
+    getMessages: {
+      apiPath: '/api/chatbot/get-messages/',
+      method: 'GET',
+    },
+    getAllMessages: {
+      apiPath: '/api/chatbot/get-allmessages',
+      method: 'GET',
+    },
+    getTranscript: {
+      apiPath: '/api/chatbot/get-transcript',
+      method: 'GET',
+    },
+    uploadContentToVectorDatabase: {
+      apiPath: '/api/chatbot/content',
+      method: 'POST',
     },
   },
 };

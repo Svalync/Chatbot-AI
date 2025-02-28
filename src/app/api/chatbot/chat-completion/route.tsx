@@ -11,15 +11,14 @@ import ChatbotMessagesController from "@/controllers/ChatbotMessagesController";
 import { chatbotMessageContentType } from "@/schemas/chatbot.index";
 import { ChatbotMessages, Chatbots } from "@prisma/client";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     const body: chatbotState = await req.json();
 
-    const ipAddress: string =
-      // @ts-ignore
-      req.ip ||
-      req.headers.get("x-forwarded-for")?.split(",")[0] ||
-      "Unknown IP";
+    const ipAddress: string =      
+    req.headers.get("x-forwarded-for")?.split(",")[0] ||
+    req.headers.get("remoteAddress") || // Use this if available
+    "Unknown IP";
     const userAgent: string = req.headers.get("user-agent") || "";
 
     const chatbotBackendImplHandler = new chatbotBackendImpl();

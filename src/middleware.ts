@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const isAuthenticated = req.cookies.get("auth_token"); // Check for a session token
+  const isAuthenticated = req.cookies.get("auth_token");
+  // Check for a session token
 
 //   if (!isAuthenticated && req.nextUrl.pathname !== "/login") {
 //     const loginUrl = new URL("/login", req.nextUrl.origin);
@@ -17,4 +18,4 @@ export function middleware(req: NextRequest) {
 
 export const config = {
     matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-  };
+};
