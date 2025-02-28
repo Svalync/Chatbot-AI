@@ -14,17 +14,16 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String          @id @default(uuid())
   name          String?
   username      String?         @unique
   email         String?         @unique
   emailVerified DateTime?
   image         String?
+  userCredentials UserCredentials[]
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
- 
+  chatbots      Chatbots[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -72,19 +71,62 @@ model VerificationToken {
  
   @@unique([identifier, token])
 }
- 
-// Optional for WebAuthn support
-model Authenticator {
-  credentialID         String  @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
- 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
-  @@id([userId, credentialID])
+
+model UserCredentials {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  tokens             BigInt   @default(0)
+  user               User     @relation(fields: [userId], references: [id])
+  companyName        String?
+  companyDescription String?
+  companyUrl         String?
+  companyLogo        String?
+  apiKey             String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @default(now()) @updatedAt
 }
+
+
+model Chatbots {
+  id              String            @id @default(uuid())
+  title           String
+  useCase         String
+  userId          String
+  collectionId    String
+  pathways        String?
+  globalPrompt    String?           @db.Text
+  user            User              @relation(fields: [userId], references: [id])
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  chatbotContent  ChatbotContent[]
+  chatbotMessages ChatbotMessages[]
+}
+
+
+
+model ChatbotContent {
+  id        String   @id @default(uuid())
+  content   String   @db.LongText
+  chatbotId String
+  chatbots  Chatbots @relation(fields: [chatbotId], references: [id])
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model ChatbotMessages {
+  id          String   @id @default(uuid())
+  messages    String   @db.LongText
+  chatbotId   String
+  chatbots    Chatbots @relation(fields: [chatbotId], references: [id])
+  sessionId   String
+  ipAddress   String
+  userAgent   String
+  editorState String?  @db.LongText
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+
+
+
+
