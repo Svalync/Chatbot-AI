@@ -8,6 +8,7 @@ import { userCredentialImpl } from "./userCredentialImpl";
 export default class userImpl implements userState {
   id: string = "";
   name: string = "";
+  image: string = "";
   email: string = "";
   tokens: Number | undefined;
   loading: boolean = false;
@@ -21,6 +22,9 @@ export default class userImpl implements userState {
     }
     if (data.name) {
       this.name = data.name;
+    }
+    if (data.image) {
+      this.image = data.image;
     }
     if (data.email) {
       this.email = data.email;
@@ -49,6 +53,7 @@ export default class userImpl implements userState {
     if (response?.user) {
       this.id = response?.user.id;
       this.email = response?.user.email;
+      this.image = response?.user.image;
       this.name = response?.user.name;
       this.tokens = response?.user.tokens;
     }
@@ -56,11 +61,10 @@ export default class userImpl implements userState {
   }
 
   static decreaseToken(userId: string, amount: number) {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       // Logic to decrease tokens
       const userCredentialsControllerHandler = new userCredentialsController();
       userCredentialsControllerHandler.decreaseTokens(userId, amount);
     }
   }
-
 }

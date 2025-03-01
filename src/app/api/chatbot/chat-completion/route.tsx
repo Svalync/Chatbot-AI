@@ -15,10 +15,10 @@ export async function POST(req: NextRequest) {
   try {
     const body: chatbotState = await req.json();
 
-    const ipAddress: string =      
-    req.headers.get("x-forwarded-for")?.split(",")[0] ||
-    req.headers.get("remoteAddress") || // Use this if available
-    "Unknown IP";
+    const ipAddress: string =
+      req.headers.get("x-forwarded-for")?.split(",")[0] ||
+      req.headers.get("remoteAddress") || // Use this if available
+      "Unknown IP";
     const userAgent: string = req.headers.get("user-agent") || "";
 
     const chatbotBackendImplHandler = new chatbotBackendImpl();
@@ -81,7 +81,6 @@ export async function POST(req: NextRequest) {
         chatbotBackendImplHandler.messages[0].id
       );
 
-   
     const chatbotExecutorHandler = new ChatbotExecutor(
       chatbotBackendImplHandler.messages[0]?.messages || []
     );
@@ -121,9 +120,9 @@ export async function POST(req: NextRequest) {
       chatbotBackendImplHandler.messages[0].id,
       JSON.stringify(chatbotBackendImplHandler.messages[0].messages),
       chatbotBackendImplHandler.id,
-      chatbotBackendImplHandler.sessionId,
+      "505e1e29-81bf-47c8-b19e-5dc3c50e9f16",
       chatbotBackendImplHandler.ipAddress || "",
-      chatbotBackendImplHandler.userAgent || "",
+      chatbotBackendImplHandler.userAgent || ""
     );
 
     const responseJson = {

@@ -1,42 +1,41 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Familjen_Grotesk, Inter } from "next/font/google";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import "./globals.css";
 
-
 import { cn } from "@/lib/utils";
-import { StoreProvider } from './StoreProvider';
+import { StoreProvider } from "./StoreProvider";
+import { SessionProvider } from "next-auth/react";
 
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const bricolage_grotesque = Bricolage_Grotesque({
-  subsets: ['latin'],
-  variable: '--font-bricolage',
+  subsets: ["latin"],
+  variable: "--font-bricolage",
 });
 const familjen_grotesk = Familjen_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-familijen',
+  subsets: ["latin"],
+  variable: "--font-familijen",
 });
 
 const sfPro = localFont({
   src: [
     {
-      path: './fonts/SFProRegular.otf',
-      weight: '400',
-      style: 'normal',
+      path: "./fonts/SFProRegular.otf",
+      weight: "400",
+      style: "normal",
     },
     {
-      path: './fonts/SFpromedium.otf',
-      weight: '500',
-      style: 'normal',
+      path: "./fonts/SFpromedium.otf",
+      weight: "500",
+      style: "normal",
     },
     {
-      path: './fonts/SFprobold.otf',
-      weight: '700',
-      style: 'normal',
+      path: "./fonts/SFprobold.otf",
+      weight: "700",
+      style: "normal",
     },
   ],
-  variable: '--font-sfPro',
+  variable: "--font-sfPro",
 });
 
 export const metadata: Metadata = {
@@ -51,11 +50,18 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-    <html lang="en">
-    <body className={cn(inter.variable, sfPro.variable, bricolage_grotesque.variable, familjen_grotesk.variable)}>
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+        <body
+          className={cn(
+            inter.variable,
+            sfPro.variable,
+            bricolage_grotesque.variable,
+            familjen_grotesk.variable
+          )}
+        >
+          <SessionProvider>{children}</SessionProvider>
+        </body>
+      </html>
     </StoreProvider>
   );
 }

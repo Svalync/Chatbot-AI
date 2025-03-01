@@ -81,18 +81,3 @@ export {
   processRefund,
   sendBugInfoAndFeedback,
 };
-
-// // Example usage
-// const userId = 1;
-
-// // Get user by ID
-// const user = getUserById(userId);
-// console.log('User:', user);
-
-// // Check refund eligibility
-// const refundEligibility = isEligibleForRefund(userId);
-// console.log('Is Eligible for Refund:', refundEligibility);
-
-// // Get invoices by user ID
-// const invoices = getInvoicesByUserId(userId);
-// console.log('Invoices:', invoices);

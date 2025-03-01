@@ -16,9 +16,8 @@ function generateCollectionId() {
 export async function POST(req: NextRequest) {
   try {
     const body: chatbotState = await req.json();
-    console.log(body);
-    const user: Session | null = await getCurrentUser();
-    console.log(user)
+   const user: Session | null = await getCurrentUser();
+
     if (!user) {
       return NextResponse.json({
         "Authorize":"not"

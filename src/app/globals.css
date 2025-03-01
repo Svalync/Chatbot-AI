@@ -5,81 +5,128 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-geist-sans);
+  --font-inter: var(--font-inter);
+  --font-recoleta: var(--font-recoleta);
+  --font-bricolage: var(--font-bricolage);
   --font-mono: var(--font-geist-mono);
 }
-
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.87 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.87 0 0);
+@font-face {
+  font-family: 'Recoleta';
+  src: url('https://ik.imagekit.io/c8xfvkbcd/v2/landingPage/font/Recoleta-Regular.ttf?updatedAt=1699102220410') format('opentype');
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+@font-face {
+  font-family: 'Recoleta';
+  src: url('https://ik.imagekit.io/codeui/font/RecoletaAlt-Medium.eot?updatedAt=1713167591748');
+  src:
+    local('Recoleta Medium'),
+    local('Recoleta-Medium'),
+    url('https://ik.imagekit.io/codeui/font/RecoletaAlt-Medium.eot?updatedAt=1713167591748?#iefix') format('embedded-opentype'),
+    url('https://ik.imagekit.io/codeui/font/RecoletaAlt-Medium.woff2?updatedAt=1713167591353') format('woff2'),
+    url('https://ik.imagekit.io/codeui/font/RecoletaAlt-Medium.woff?updatedAt=1713167591524') format('woff'),
+    url('https://ik.imagekit.io/codeui/font/RecoletaAlt-Medium.ttf?updatedAt=1713167591925') format('truetype');
+  font-weight: 500;
+  font-style: normal;
 }
 
+
+  :root {
+    --font-recoleta: 'Recoleta', sans-serif;
+
+    --background: 0 0% 100%;
+    /* #1a1a1a */
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    /* #FA5320 */
+    --primary: 14 96% 55%;
+    /* #FCFCFD */
+    --primary-foreground: 240 20% 99%;
+
+    /* #28323B */
+    --text: 208 19% 19%;
+    /* #404040 */
+    --text-primary: 0 0% 25%;
+
+    /* #0174BC Blue*/
+    --secondary: 203 99% 37%;
+    /* #4C555E */
+    --secondary-foreground: 210 11% 33%;
+
+    /* #707880 */
+    --muted: 210 7% 47%;
+    --muted-foreground: 220 33% 98%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --grey: 240 7% 97%;
+
+    --destructive: 0 58% 47%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* #D7D3C9 */
+    --border: 43 15% 82%;
+    /* #EEF0F3 */
+    --primary-border: 216 17% 94%;
+    /* black 33% */
+    --input: 0 0, 0% 0.33;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 220 8% 92%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 200 7% 92%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -98,6 +145,7 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
+  --color-primary-border: var(--primary-border);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
@@ -121,9 +169,33 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
 }
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+  color: black;
+}
+/* .scrollbar::-webkit-scrollbar-track {
+  background: var(--background);
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 0.25rem;
+} */

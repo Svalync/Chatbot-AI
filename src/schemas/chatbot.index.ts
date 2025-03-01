@@ -61,5 +61,13 @@ export enum ChatbotContentStatusType {
   RUNNING = "running",
   COMPLETED = "completed",
 }
+export interface StreamResponse {
+  response: string;
+}
+
+export interface StremMessage {
+  role: string;
+  content: string[];
+}
 
 export { useCaseEnum, type SendChatBotSchemaType };

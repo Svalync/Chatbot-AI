@@ -1,11 +1,11 @@
 // Consolidated enum for all email templates
 enum EmailTemplateType {
-  Welcome = 'WELCOME',
-  VerificationToken = 'VERIFICATION_TOKEN',
-  WorkflowScheduled = 'WORKFLOW_SCHEDULED',
-  WorkflowNotActivated = 'WORKFLOW_NOT_ACTIVATED',
-  NoActivityLastFour = 'NO_ACTIVITY_LAST_FOUR',
-  Feedback = 'FEEDBACK',
+  Welcome = "WELCOME",
+  VerificationToken = "VERIFICATION_TOKEN",
+  WorkflowScheduled = "WORKFLOW_SCHEDULED",
+  WorkflowNotActivated = "WORKFLOW_NOT_ACTIVATED",
+  NoActivityLastFour = "NO_ACTIVITY_LAST_FOUR",
+  Feedback = "FEEDBACK",
 }
 
 // Interface for email content
@@ -22,11 +22,15 @@ interface renderEmailTemplateProp {
 }
 
 // Template map to avoid switch statements
-const emailTemplates: Map<EmailTemplateType, (firstName: string, customData?: any) => EmailContent> = new Map([
+const emailTemplates: Map<
+  EmailTemplateType,
+  (firstName: string, customData?: any) => EmailContent
+> = new Map([
   [
     EmailTemplateType.Welcome,
     (firstName: string) => ({
-      subject: 'Welcome to Svalync &ndash; Your Account is Successfully Created!',
+      subject:
+        "Welcome to Svalync &ndash; Your Account is Successfully Created!",
       header: `Hey ${firstName} ✨`,
       body: `
       Welcome to Svalync! 🎉
@@ -35,37 +39,38 @@ const emailTemplates: Map<EmailTemplateType, (firstName: string, customData?: an
 
       Thank you for choosing Svalync. We're thrilled to help you achieve more with less effort!
       `,
-      footer: '',
+      footer: "",
     }),
   ],
   [
     EmailTemplateType.VerificationToken,
     (firstName: string, customData?: { redirectLink: string }) => ({
-      subject: 'Verify Your Account on Svalync',
+      subject: "Verify Your Account on Svalync",
       header: `Hey ${firstName} ✨`,
       body: `
       Thank you for creating an account with Svalync! To get started, please verify your email address by clicking the link below:
       
       <a href="${customData?.redirectLink}">Verify Your Email</a>
       `,
-      footer: '',
+      footer: "",
     }),
   ],
   [
     EmailTemplateType.WorkflowScheduled,
     (firstName: string, customData?: { workflowName: string }) => ({
-      subject: 'Your Workflow is Now Active! 🚀',
+      subject: "Your Workflow is Now Active! 🚀",
       header: `Hey ${firstName} ✨`,
       body: `
       Good news! The workflow ${customData?.workflowName} you created in Svalync is now up and running. 🎉
       `,
-      footer: '',
+      footer: "",
     }),
   ],
   [
     EmailTemplateType.WorkflowNotActivated,
     (firstName: string, customData?: { workflowName: string }) => ({
-      subject: 'Your Workflow is Ready &ndash; Don&apos;t Miss Out on Automation! &#x1F504;',
+      subject:
+        "Your Workflow is Ready &ndash; Don&apos;t Miss Out on Automation! &#x1F504;",
       header: `Hey ${firstName} ✨`,
       body: `
         We noticed you created a workflow, ${customData?.workflowName}, a couple of days ago but haven&apos;t taken any action since. Remember, your automation is all set and ready to go!
@@ -77,13 +82,14 @@ const emailTemplates: Map<EmailTemplateType, (firstName: string, customData?: an
 
         Your automation journey is just a click away. Let&apos;s get your workflows running and save you more time!
       `,
-      footer: '',
+      footer: "",
     }),
   ],
   [
     EmailTemplateType.NoActivityLastFour,
     (firstName: string) => ({
-      subject: 'Need Help Getting Started with Svalync? We&apos;re Here for You! &#x1F680;',
+      subject:
+        "Need Help Getting Started with Svalync? We&apos;re Here for You! &#x1F680;",
       header: `Hey ${firstName} &#x2728;`,
       body: `
         It&apos;s been a few days since you joined Svalync, and we noticed that you haven&apos;t schedule any workflows. 
@@ -96,14 +102,14 @@ const emailTemplates: Map<EmailTemplateType, (firstName: string, customData?: an
 
         If you haven&apos;t found a workflow that suits your needs, please fill out this form, and our team will be happy to assist you.
       `,
-      footer: '',
+      footer: "",
     }),
   ],
   // Add more templates here...
   [
     EmailTemplateType.Feedback,
     (firstName: string, customData?: any) => ({
-      subject: 'We Want to Hear from You! 📣',
+      subject: "We Want to Hear from You! 📣",
       header: `Hey ${firstName} ✨`,
       body: `
         We hope you're enjoying your experience with Svalync. Your feedback is important to us, and we'd love to hear from you. Please share your thoughts and suggestions with us.
@@ -111,25 +117,36 @@ const emailTemplates: Map<EmailTemplateType, (firstName: string, customData?: an
 
         Email of the user who provided the feedback: ${customData?.email}
       `,
-      footer: '',
+      footer: "",
     }),
   ],
 ]);
 
 // Function to get email content based on the template type
-function getEmailContent(template: EmailTemplateType, firstName: string, customData?: any): EmailContent {
+function getEmailContent(
+  template: EmailTemplateType,
+  firstName: string,
+  customData?: any
+): EmailContent {
   const templateFunction = emailTemplates.get(template);
 
   if (!templateFunction) {
-    throw new Error('Invalid email template');
+    throw new Error("Invalid email template");
   }
 
   return templateFunction(firstName, customData);
 }
 
 // Function to generate email HTML content on the server
-function renderEmailTemplate(template: EmailTemplateType, props: renderEmailTemplateProp): string {
-  const emailContent = getEmailContent(template, props.firstName, props.customData);
+function renderEmailTemplate(
+  template: EmailTemplateType,
+  props: renderEmailTemplateProp
+): string {
+  const emailContent = getEmailContent(
+    template,
+    props.firstName,
+    props.customData
+  );
 
   // Enhanced HTML template with better styling
   return `
@@ -191,15 +208,15 @@ function renderEmailTemplate(template: EmailTemplateType, props: renderEmailTemp
 
 // Example usage with custom data
 async function exampleUsage() {
-  const email = 'user@example.com';
+  const email = "user@example.com";
   const template = EmailTemplateType.Feedback; // Specify the template type
-  const firstName = 'John'; // Provide first name for personalization
+  const firstName = "John"; // Provide first name for personalization
   const customData = {
-    content: 'https://svalync.com/verify?token=someUniqueToken123',
+    content: "https://svalync.com/verify?token=someUniqueToken123",
   };
 
   const emailHtml = renderEmailTemplate(template, { firstName, customData });
-  console.log(emailHtml); // Display the generated email HTML
+  // Display the generated email HTML
 }
 
 export { EmailTemplateType, getEmailContent, renderEmailTemplate };

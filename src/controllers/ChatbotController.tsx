@@ -171,7 +171,7 @@ export default class ChatbotController {
       };
 
       const result = await prisma.chatbots.upsert(finalJson);
-    console.log(result)
+
       return result;
     } catch (e) {
       throw e;
